@@ -1,0 +1,7 @@
+#Latex
+*.aux
+*.gz
+*.log
+*.blg
+*.bbl
+*.synctex*

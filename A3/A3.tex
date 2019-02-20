@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\title{MATH 222 Assignment 3}
+\author{Sterling Laird - V00834995}
+\date{February 25, 2019}
+
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\setlength{\parindent}{1.7cm}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+\begin{enumerate}[]
+\item
+\begin{enumerate}[label=\alph*]
+\item
+	When there are no restrictions regarding who anyone can sit next to, we can assign one of the 10 students to the first chair, one of the 9 remaining to the second chair and so on to produce a total number of permutations of $10\cdot9\cdot8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1 = 10!$. Finally each distinct assignment can be rotated 10 times to produce 10 other permutations so the final number of different ways to seat the 10 kids without restriction is $\frac{10!}{10} = 9!$
+\item
+	To ensure no two girls sit next to each other, we consider a ordered list of slots of length 12 $b_1,\_,b_2,\_,b_3,\_,b_4,\_,b_5,\_,b_6,\_$ where a unique boy $b_i$ from the set of boys and an empty slot alternate. To create a valid solution, either a girl or no-one will go in each remaining slot, and the filled slots will become the final seating arrangement. The number of such slot orders is the product of the number of ways to order the boys and the number of ways to fill the empty slots with the girls. The number of orderings of boys is simply $6!$ for 6 boys. The number of ways to fill the empty slots with the girls is simply $P(6,4)$ since there are 6 possible slots to fill, and 4 girls to fill them.\\
+	Together there are $6!\cdot P(6,4)$ slot orders and since the seating is on a round table with 10 seats there are  $\frac{6!\cdot P(6,4)}{10} = 25920$ total ways to seat 10 kids if no two girls can set next to each other.
+\item
+	If all 6 boys must sit together, then the number of ways they can be seated is the number of ways $b_1,b_2,b_3,b_4,b_5,b_6,g_1,g_2,g_3,g_4$ can be constructed where $b_i$ is uniquely from the set of boys and $g_i$ is uniquely from the set of girls. The number of such ways is simply $6!\cdot4!$ for 6 boys and 4 girls.
+\end{enumerate}
+\item
+	Since all positive integers less than 1000000 have 6 digits (including leading 0's) we are doing a sum of each digit in a 6 digit number, or 5 sums. We can use the "Stars and bars" technique to restate the problem as the number of ways we can insert 5 +'s into a list of 10 1's (1111111111) where a "+" between 2 contiguous sets of 1's represents the sum of the number of 1's in the sets, and a "+" with no 1's on a side has an implicit 0 on that side.\\
+	Doing this we can see that there are $\binom{10+5}{5} = \binom{15}{5}$ ways to insert 5 +'s into a list of 10 1's. Since no digit can be greater then 9, we must exclude all cases where a digit is greater than 9. However, since the sum must equal 10, the only case where a digit is greater than 9 is when all other digits are 0. Therefore, for 6 digits there are only 6 times when this is true so we must exclude 6 solutions.\\
+	$\therefore$ the number of positive integers less than 1000000 that have the sum of their digits equal to 10 is $\binom{15}{5} - 6 = 2997$.
+\item
+	Let $S'=\{1,2,...,15\}$.\\
+	Let $G \subset S$ where $|G|=6$\\
+	Let $H \subset S'$ where $|H|=6$\\
+	We can create a 1-to-1 correspondence $f$ between any $H$ and any  $G$ by adding 0 to the smallest element of $H$, 1 to the next smallest, 2 to the next smallest and so on.\\
+	We can see for all $H$, $f(H)$ has size 6 and has no elements  $x$ and $y$ that satisfy $y=x+1$. Similarly we can see that for all $G$ that has no elements  $x$ and $y$ that satisfy $y=x+1$, $f^{-1}(G)$ exists in $H$.\\
+	Therefore the number of subsets of $S$ that have size 6 and have no elements x and y that satisfy $y=x+1$ is the same as the number of distinct subsets $H$. Clearly, since $H$ is simply a 6 element subset of $S'$, this number is $\binom{15}{6} = 5005$
+	
+\item
+\item
+\begin{enumerate}[label=\alph*]
+\item
+\item
+\end{enumerate}
+\item
+\begin{enumerate}[label=\alph*]
+\item
+\item
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

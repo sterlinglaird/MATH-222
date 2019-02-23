@@ -18,16 +18,16 @@
 \item
 \begin{enumerate}[label=\alph*]
 \item
-	When there are no restrictions regarding who anyone can sit next to, we can assign one of the 10 students to the first chair, one of the 9 remaining to the second chair and so on to produce a total number of permutations of $10\cdot9\cdot8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1 = 10!$. Finally each distinct assignment can be rotated 10 times to produce 10 other permutations so the final number of different ways to seat the 10 kids without restriction is $\frac{10!}{10} = 9!$
+	When there are no restrictions regarding who anyone can sit next to, we can assign one of the 10 kids to the first chair, one of the 9 remaining to the second chair and so on to produce a total number of permutations of $10\cdot9\cdot8\cdot7\cdot6\cdot5\cdot4\cdot3\cdot2\cdot1 = 10!$. Finally, each distinct assignment can be rotated 10 times to produce 10 other permutations so the final number of different ways to seat the 10 kids without restriction is $\frac{10!}{10} = 9! = 362880$
 \item
 	To ensure no two girls sit next to each other, we consider a ordered list of slots of length 12 $b_1,\_,b_2,\_,b_3,\_,b_4,\_,b_5,\_,b_6,\_$ where a unique boy $b_i$ from the set of boys and an empty slot alternate. To create a valid solution, either a girl or no-one will go in each remaining slot, and the filled slots will become the final seating arrangement. The number of such slot orders is the product of the number of ways to order the boys and the number of ways to fill the empty slots with the girls. The number of orderings of boys is simply $6!$ for 6 boys. The number of ways to fill the empty slots with the girls is simply $P(6,4)$ since there are 6 possible slots to fill, and 4 girls to fill them.\\
-	Together there are $6!\cdot P(6,4)$ slot orders and since the seating is on a round table with 10 seats there are  $\frac{6!\cdot P(6,4)}{10} = 25920$ total ways to seat 10 kids if no two girls can set next to each other.
+	Together there are $6!\cdot P(6,4)$ slot orders and since the seating is on a round table with 6 chosen seats for the boys, there are 6 identical rotation for each valid solution so there are $\frac{6!\cdot P(6,4)}{6} = 43200$ total ways to seat 10 kids if no two girls can set next to each other.
 \item
-	If all 6 boys must sit together, then the number of ways they can be seated is the number of ways $b_1,b_2,b_3,b_4,b_5,b_6,g_1,g_2,g_3,g_4$ can be constructed where $b_i$ is uniquely from the set of boys and $g_i$ is uniquely from the set of girls. The number of such ways is simply $6!\cdot4!$ for 6 boys and 4 girls.
+	If all 6 boys must sit together, then the number of ways they can be seated is the number of ways $b_1,b_2,b_3,b_4,b_5,b_6,g_1,g_2,g_3,g_4$ can be constructed where $b_i$ is uniquely from the set of boys and $g_i$ is uniquely from the set of girls. There is no need to account for rotations because we are assigning 2 groups of kids instead of kids individually so there are no 2 solutions that are equivalent when rotated. The number of such ways is simply $6!\cdot4! = 17280$ for 6 boys and 4 girls.
 \end{enumerate}
 \item
-	Since all positive integers less than 1000000 have 6 digits (including leading 0's) we are doing a sum of each digit in a 6 digit number, or 5 sums. We can use the "Stars and bars" technique to restate the problem as the number of ways we can insert 5 +'s into a list of 10 1's (1111111111) where a "+" between 2 contiguous sets of 1's represents the sum of the number of 1's in the sets, and a "+" with no 1's on a side has an implicit 0 on that side.\\
-	Doing this we can see that there are $\binom{10+5}{5} = \binom{15}{5}$ ways to insert 5 +'s into a list of 10 1's. Since no digit can be greater then 9, we must exclude all cases where a digit is greater than 9. However, since the sum must equal 10, the only case where a digit is greater than 9 is when all other digits are 0. Therefore, for 6 digits there are only 6 times when this is true so we must exclude 6 solutions.\\
+	Since all positive integers less than 1000000 have 6 digits (including leading 0's) we are doing a sum of each digit in a 6 digit number, or 5 sums. We can use the "Stars and Bars" technique to restate the problem as the number of ways we can insert 5 +'s into a list of 10 1's (1111111111) where a "+" between 2 contiguous sets of 1's represents the sum of the number of 1's in the sets, and a "+" with no 1's on a side has an implicit 0 on that side.\\
+	Doing this we can see that there are $\binom{10+5}{5} = \binom{15}{5}$ ways to insert 5 +'s into a list of 10 1's. Since no digit can be greater then 9, we must exclude all cases where a digit is greater than 9 (when there is more than 9 contiguous 1's). However, since the sum must equal 10, the only case where a digit is greater than 9 is when all other digits are 0. Therefore, for 6 digits there are only 6 times when this is true so we must exclude 6 solutions.\\
 	$\therefore$ the number of positive integers less than 1000000 that have the sum of their digits equal to 10 is $\binom{15}{5} - 6 = 2997$.
 \item
 	Let $S'=\{1,2,...,15\}$.\\
@@ -36,17 +36,68 @@
 	We can create a 1-to-1 correspondence $f$ between any $H$ and any  $G$ by adding 0 to the smallest element of $H$, 1 to the next smallest, 2 to the next smallest and so on.\\
 	We can see for all $H$, $f(H)$ has size 6 and has no elements  $x$ and $y$ that satisfy $y=x+1$. Similarly we can see that for all $G$ that has no elements  $x$ and $y$ that satisfy $y=x+1$, $f^{-1}(G)$ exists in $H$.\\
 	Therefore the number of subsets of $S$ that have size 6 and have no elements x and y that satisfy $y=x+1$ is the same as the number of distinct subsets $H$. Clearly, since $H$ is simply a 6 element subset of $S'$, this number is $\binom{15}{6} = 5005$
-	
 \item
+	 One way of satisfying the restriction that nobody ends up with an odd number of any color of socks, is to assign socks in pairs where each sock in the pair has the same color. With this, there are 25 pairs of black socks, 15 white pairs, and 10 blue pairs.\\
+	 We can distribute pairs of socks by first distributing all the black pairs, then the white pairs, and finally the blue pairs. Using the product rule, the total number of ways to distribute the socks is equal to the product of the number of ways to distribute each set of colored pairs.\\
+	 To find the number of ways to distribute each set of pairs we can use the "Stars and Bars" technique where we find that this number is equal to the number of ways we can choose $r-1$ bars from a set of $n+r-1$ possible bar locations where $n$ is the number of pairs of socks of a particular color and $r$ is the number of people. Therefore there are $\binom{25+10-1}{10-1}$ ways to distribute black socks, $\binom{15+10-1}{10-1}$ for white socks, and $\binom{10+10-1}{10-1}$ for blue socks.\\
+	 Combining this all together, the total number of ways the socks can be divided among 10 people so that nobody ends up with an odd number of any color of socks is $\binom{34}{9}\cdot\binom{24}{9}\cdot\binom{19}{9}$
 \item
+	It can be clearly seen that the expression can be simplified into:
+	\begin{gather}
+		\sum_{i=0}^n \binom{n}{i}2^{i}1^{n-i} \nonumber
+	\end{gather}
 \begin{enumerate}[label=\alph*]
 \item
+	From the Binomial Theorem this expression can be simplified further into:
+	\begin{gather}
+		(2+1)^n = 3^n \nonumber
+	\end{gather}
 \item
+	Consider an alphabet of \{a,b,c\} and consider the number of possible strings of length $n$ using those symbols.\\
+	One way of counting the number of this number is to choose the symbol at each position individually. Since each position can have 3 posibilities, we get:
+	\begin{gather}
+		\prod_{i=0}^{n}3 = 3^n \nonumber
+	\end{gather}
+	Another way of counting this number is to consider the number of a's or b's in the string. Let this number of a's or b's in the string be equal to $k$. Following this, a complete representation of the number of strings is the sum of the number of strings possible for each $k \leq n$. For any $k \leq n$, the number of different position combinations for that k is $\binom{n}{k}$ and each position choosen must be either a or b so the number of possible assignments for that position is $2^k$. Therefore the number of strings for any $k$ is: 
+	\begin{gather}
+		2^{k}\binom{n}{k} \nonumber
+	\end{gather}
+And since $k$ can be any non-negative integer up to $n$, the total number of possible strings is:
+	\begin{gather}
+		\sum_{i=0}^{n}2^{i}\binom{n}{i} \nonumber
+	\end{gather}
+Since two methods of counting the same set resulted in different answers, the two answers must be the same so:
+	\begin{gather}
+		3^n = \sum_{i=0}^{n}2^{i}\binom{n}{i} \nonumber
+	\end{gather}
 \end{enumerate}
 \item
 \begin{enumerate}[label=\alph*]
 \item
+	For $1\leq i \leq 14$ let $x_i$ be the result from summing from the 1st summand to the $i$\textsuperscript{th} summand. Then the following two inequalities are true since $x_1=1$ (because each summand must be greater than 0) and $x_{14}=20$:
+	\begin{gather}
+		1<x_2<x_3<...<x_{13}<20 \nonumber \\
+		6<x_2+5<x_3+5<...<x_{13}+5<25 \nonumber
+	\end{gather}
+	We now have 24 distinct numbers $x_2,x_3,...,x_{13},x_2+5,x_3+5,...,x_{13}+5$ that must take on only 23 different values from the set $\{2,3,...,24\}$, so at least 2 of the numbers must be equal. Since no number can be repeated in each of the two sets there must be a number $x_i$ in which there is another number $x_j$ where $x_j -x_i = 5$ and $j \neq i$. Therefore since there must be 2 numbers that differ by 5, the consecutive summands that create this difference must sum to 5.
 \item
+	Let $S=$any set of 13 integers.\\
+	First we divide every element of $S$ by 12.\\
+	We know when dividing an integer $n$ by 12 there exists a quotient $q$ and remainder $r$ where $0\leq r < 12$ and:
+	\begin{gather}
+		n=12q+r \nonumber 
+	\end{gather}
+	Since there are only 12 possibilities for $r$ and 13 numbers, at least 2 numbers $n_1,n_2$ must produce the same remainder $r$ when divided by 12, so:
+	\begin{gather}
+		n_1 =12q_1+r \nonumber \\
+		n_2 =12q_2+r \nonumber
+	\end{gather}
+	When we calculate the difference between these numbers we see:
+	\begin{gather}
+		n_1-n_2=(12q_1+r) - (12q_2+r) = 12(q_1-q_1) \nonumber
+	\end{gather}
+	And $12(q_1-q_1)$ is quite clearly divisible by 12.\\
+	$\therefore$ in any set of 13 integers there must be two whose difference is divisible by 12.
 \end{enumerate}
 
 \end{enumerate}

@@ -33,17 +33,22 @@ $\therefore S(n,n-2)=\binom{n}{3}+3\binom{n}{4}$ for $n\geq 4$.
 We can use a generating function to get our result.\\
 Consider the generating function in which the sum of coefficients of $x^i$ with $i\leq 35$ is our result:
 	\begin{align}
-		g(x)&=(x^0+x^1+x^2...)^6 \nonumber\\
-		&=\frac{1}{(1-x)^6} \nonumber\\
+		g(x)&=(x^0+x^1+...+x^9)^6 \nonumber\\
+		&=(\frac{1-x^{9+1}}{(1-x)})^6 \nonumber\\
+		&=\frac{(1-x^{10})^6}{(1-x)^6} \nonumber
 	\end{align}
 If we multiply $g(x)$ by $\frac{1}{1-x}=1+x+x^2+...$, the coefficient of $x^{35}$ is our result since the new $g(x)$ has coefficients which are cumulative of the old $g(x)$ coefficients. So:
 	\begin{align}
-		g(x)&=\frac{1}{(1-x)^6}\cdot \frac{1}{1-x} \nonumber\\
-		&=\frac{1}{(1-x)^7} \nonumber\\
-		&=\sum_{i=0}^{\infty} \binom{i+7-1}{7-1}x^i  \nonumber\\
-		&=\sum_{i=0}^{\infty} \binom{i+6}{6}x^i \nonumber\\
+		g(x)&=\frac{(1-x^{10})^6}{(1-x)^6}\cdot \frac{1}{1-x} \nonumber\\
+		&=\frac{(1-x^{10})^6}{(1-x)^7} \nonumber\\
+		&=\sum_{i=0}^{6} \binom{6}{i}(-1)^i(x^{10i}) \cdot \sum_{i=0}^{\infty} \binom{i+7-1}{7-1}x^i  \nonumber\\
+		&=\sum_{i=0}^{6} \binom{6}{i}(-1)^i(x^{10i}) \cdot \sum_{i=0}^{\infty} \binom{i+6}{6}x^i  \nonumber
 	\end{align}
-Clearly then, the coefficient of $x^{35}$, the number is of integers between 0 and 999999 with digits that sum to no more than 35, is $\binom{41}{6} = 4496388$
+Since the only coefficients that matter for us are the ones for $x^{35}$, we can remove all other elements in the previous product to get:
+	\begin{align}
+	\binom{6}{0}x^0\cdot\binom{35+6}{6}x^{35}-\binom{6}{1}x^{10}\binom{25+6}{6}x^{25} \nonumber\\ +\binom{6}{2}x^{20}\binom{15+6}{6}x^{15}-\binom{6}{3}x^{30}\binom{5+6}{6}x^{5} \nonumber
+	\end{align}
+Therefore the coefficient of $x^{35}$, the number is of integers between 0 and 999999 with digits that sum to no more than 35, is $4496388-4416686+814960-9240=883422$
 \item
 Consider a hexagonal shaped room with the 6 walls labeled 0,1,2,3,4,5 in order around the room.\\
 Let $c_i$ be the condition that the walls $i$ and $i+1\mod 5$ are the same color for $0\leq i\leq5$.\\

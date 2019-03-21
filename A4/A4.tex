@@ -19,6 +19,18 @@
 
 \begin{enumerate}[]
 \item
+Since $f$ is onto from a set to the same set, each onto function can be considered a permutation of A.\\
+Let $c_i$ be the condition that $f(i)=i$ for $i=2,4,6,8$\\
+For each satisfied condition, there will be one less element that can be permuted.\\
+Consider the number of elements that satisfy the conditions $i,j,k$\\
+$N=9!$\\
+$N(c_i)=8!$\\
+$N(c_ic_j)=8!$\\
+$N(c_ic_jc_k)=8!$\\
+$N(c_2c_4c_6c_8)=8!$\\
+
+So the number of onto functions $\overline{N}$ is:\\
+$\overline{N}= 9! -\binom{4}{1}\cdot 8! + \binom{4}{2}\cdot 7! -\binom{4}{3}\cdot 6! + \binom{4}{4}\cdot 5!$
 \item
 Consider $n$ distinguishable elements and $n-2$ indistinguishable boxes. Count the number of ways to divide the elements into the boxes such that no box is empty for $n\geq 4$.\\
 Clearly there are $S(n,n-2)$ such ways.\\
@@ -52,6 +64,8 @@ Therefore the coefficient of $x^{35}$, the number is of integers between 0 and 9
 \item
 Consider a hexagonal shaped room with the 6 walls labeled 0,1,2,3,4,5 in order around the room.\\
 Let $c_i$ be the condition that the walls $i$ and $i+1\mod 5$ are the same color for $0\leq i\leq5$.\\
+When no conditions are satisfied, there are 6 contiguous colors representing the room, each which can be one of 10 colors. For each satisfied condition, the number of contiguous colors representing the room decreases by one because if the condition is adjacent to another condition, only one additional wall will be restricted in color (to be the color of the adjacent group of walls), and if the condition is not adjacent to any other condition it restricts 2 walls, but creates 1 new group of colors for $2-1=1$ less contiguous colors.\\
+Consider the number of elements that satisfy the conditions $i,j,k,q,r$\\
 $N=10^6$\\
 $N(c_i)=10^5$\\
 $N({c_i}{c_j})=10^4$\\
@@ -60,7 +74,8 @@ $N({c_i}{c_j}{c_k}{c_q})=10^2$\\
 $N({c_i}{c_j}{c_k}{c_q}{c_r})=10$\\
 $N({c_0}{c_1}{c_2}{c_3}{c_4}{c_5})=10$\\
 $\overline{N} = 10^6 - \binom{6}{1}\cdot 10^5 + \binom{6}{2}\cdot 10^4 - \binom{6}{3}\cdot 10^3 + \binom{6}{4}\cdot 10^2 - \binom{6}{5}\cdot 10 + \binom{6}{6}\cdot 10$\\
-$\overline{N} = 528450$
+$\overline{N} = 528450$\\
+So the number of ways to paint the 6 walls is 528450
 \item
 	\begin{enumerate}[label=\alph*]
 	\item For R to be an equivalence relation, it must be reflexive, symmetric, and transitive.\\

@@ -1,0 +1,211 @@
+\documentclass[11pt]{article}
+\title{MATH 222 Assignment 5}
+\author{Sterling Laird - V00834995}
+\date{April 4, 2019}
+
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+
+\graphicspath{{./}}
+
+\setlength{\parindent}{1.7cm}
+
+\begin{document}
+
+\maketitle
+\pagebreak
+
+\begin{enumerate}[]
+\item
+	\begin{enumerate}
+	\item $f(x) = -1 + 12x -48x^2 + 64x^3$ so the sequence is -1,12,-48,64,0,0,0,...
+	\item 
+	\begin{align}
+		f(x) &= \frac{1-x}{1+x} \nonumber\\
+		&= (1-x)\sum_{i=0}^\infty(-1)^ix^i \nonumber\\
+		&= 1(1-x) - x(1-x) + x^2(1-x) - x^3(1-x) +... \nonumber\\
+		&= 1 - x - x + x^2 + x^2 - x^3 - x^3 +... \nonumber\\
+		&= 1-3x+2x^2-2x^3+... \nonumber
+	\end{align}
+	So the sequence is 1,-2,2,-2,2,...
+	\item
+	\begin{align}
+		f(x) &= \frac{x}{1-3x^2} \nonumber\\
+		&= (x)\sum_{i=0}^\infty (3x^2)^i \nonumber\\
+		&= x+3x^3+9x^5+27x^7+... \nonumber
+	\end{align}
+	So the sequence is 0,1,0,3,0,9,0,27,0,...
+	\end{enumerate}
+\item
+	\begin{enumerate}
+	\item
+	The sequence is similar to the sequence given by $\frac{1}{1+x}$ except that every other number is a 0, starting with an initial 0. If we square $x$ we get the sequence $1,0,-1,0,1,0,-1,...$, and if we multiply by $x$ we shift the sequence by one getting our desired sequence. So the generating function for is $g(x)=\frac{x}{1+x^2}$
+	\item 
+	\begin{align}
+		g(x) &= (1+x+x^2+x^3)(x+x^3+x^5+x^7) \nonumber\\
+		&= x(1+x+x^2+x^3)(1+x^2+x^4+x^6) \nonumber\\
+		&= x\frac{1-x^4}{1-x}\frac{1-x^8}{1-x^2}\nonumber
+	\end{align}
+	\item
+	\begin{align}
+		g(x) &= (1+x^2+x^4+...)^{10} \nonumber\\
+		&= (1+r+r^2+r^3+...) \quad r=x^2 \nonumber\\
+		&= (\frac{1}{1-r})^{10} \nonumber\\
+		&= (\frac{1}{1-x^2})^{10} \nonumber
+	\end{align}
+	\end{enumerate}
+\item
+In our generating function, we are looking for the coefficient of $x^{41}$
+\begin{align}
+	g(x) &= (x+x^3+x^5+..+x^{19})^3(1+x^2+x^4+..+x^{20})^2 \nonumber\\
+	&= x(1+x^2+x^4+..+x^{18})^3(1+x^2+x^4+..+x^{20})^2 \nonumber
+\end{align}
+If we drop the leading x, we will now look for the coefficient of $x^{40}$
+\begin{align}
+	g(x) &= (1+x^2+x^4+..+x^{18})^3(1+x^2+x^4+..+x^{20})^2 \nonumber\\
+	&= (1+r+r^2+..+r^{9})^3(1+r+r^2+..+r^{10})^2 \quad r=x^2 \nonumber
+\end{align}
+Now that we are using a generation function in terms of r, we are looking for the coefficient of $r^{20}$
+\begin{align}
+	g(r) &= (\frac{1-r^{10}}{1-r})^3\frac{1-r^{11}}{1-r})^2 \nonumber\\
+	&= (\frac{1}{1-r})^5(1-r^{10})^3(1-r^{11})^2 \nonumber\\
+	&= (\sum_{i=0}^\infty\binom{i+4}{4}r^i)\cdot\nonumber\\ 
+		&\phantom{{}=1}(\binom{3}{0}-\binom{3}{1}r^{10}+\binom{3}{2}r^{20}-\binom{3}{3}r^{30})\cdot\nonumber\\
+		&\phantom{{}=1}(\binom{2}{0}-\binom{2}{1}r^{11}+\binom{2}{2}r^{22})\nonumber
+\end{align}
+$r^20$ is in this function when $i=0,10,9,20$ so the $r^20$ terms are:
+\begin{gather}
+	\binom{4}{4}\binom{3}{2}r^{20} + \binom{14}{4}r^{10}(-\binom{3}{1}r^10) +\binom{13}{4}r^9(-\binom{2}{1}r^{11}) + \binom{24}{4}r^{20}\binom{3}{0}\binom{2}{0} \nonumber\\
+	= \binom{4}{4}\binom{3}{2} - \binom{14}{4}\binom{3}{1} - \binom{13}{4}\binom{2}{1} + \binom{24}{4}\binom{3}{0}\binom{2}{0} \nonumber\\
+	= 6196 \nonumber
+\end{gather}
+So the number of solutions is 6196.
+\item We can break the division of coins into 2 steps, dividing up the loonies and dividing up the toonies so the number of ways to divide both types is the product of the number of ways to divide each coin type.
+For loonies we are looking for the coefficient of $x^{45}$:
+\begin{align}
+	g(x) &= 1(x^{10}+x^{11}+...)(1+x+x^2+...)\nonumber\\
+	&=  x^{10}(1+x+x^2+...)^2 \nonumber\\
+	&= x^{10}(\frac{1}{1-x})^2 \nonumber\\
+	&= x^{10}\sum_{i=0}^\infty\binom{i+1}{1}x^i\nonumber
+\end{align}
+So the coefficient of $x^{45}$ is $\binom{36}{1}=36$\\
+For toonies we are looking for the coefficient of $x^{25}$:
+\begin{align}
+	g(x) &= (1+x+x^2+...)1(x+x^3+x^5+...)\nonumber\\
+	&=  x^{0}x^{25} +x^{2}x^{23} + x^{4}x^{21} + ... + x^{24}x^{1} \nonumber
+\end{align}
+Since there are 13 terms for $x^{25}$ each with the coefficient of 1, the coefficient of $x^{25}$ is 13\\
+So the total number of ways to divide the money is $36\cdot 13 = 468$
+\item Assume we have $n-1$ games already paired up and we are adding a new pair.\\
+There are 2 cases for where the 2 new players can go.\\
+First case: The new players create their own game with the 2 new players, all the other games will not change so there are $a_{n-1}$ ways in this case (the number of ways to get to the point were there are $n-1$ games playing.\\
+Second case: The new players create their own game with the 2 new players, then swap the first player with one of the existing players. There are $n-1$ pairs that the player could join, and $a_{n-1}$ ways for the games to already be distributed. Because we the new player can be swapped with either player for each game, there are $2(n-1)(a_{n-1})$ ways to do this.\\
+Clearly $a_1 = 1$
+So the recurrence relation for the number of ways in which $2n$ chess players can be paired is:
+\begin{gather}
+	a_n = a_{n-1} + 2(n-1)(a_{n-1}) \nonumber
+\end{gather}
+\item
+	\begin{enumerate}
+	\item If $a_n$ is the number of valid n-strings, let $b_n$ be the number of invalid n-strings. So $a_n + b_n = 10^n$\\
+	By definition, adding a 0 turns an invalid string into a valid string, and a valid string into an invalid string so:
+	\begin{gather}
+		a_{n+1} = 9a_n + b_n \nonumber \\
+		b_{n+1} = a_n + 9b_n \nonumber
+	\end{gather}
+	Substituting for $b_n$ we get $a_{n+1} =9a_n +10^n - a_n$ or $a_n =8a_{n-1} +10^{n-1}$\\
+	Clearly there is a single valid 0-string so $a_0=1$\\
+	\item The recurrence relation can be re-written as $a_n-8a_{n-1}=10^{n-1}$\\
+	We then need to find the homogeneous and particular recurrence relations so that $a_n=a_n^{(h)} + a_n^{(p)}$\\
+	For the homogeneous recurrence relation, $a_n-8a_{n-1}=0$ which has a characteristic equation of $r-8=0$, so the characteristic root is $r=8$\\
+	Therefore the homogeneous recurrence relation $a_n^{(h)}=c\cdot 8^n$ for some c.\\
+	For the particular solution, $a_n^{(p)} = A\cdot 10^{n-1}$ for some A.\\
+	So using the original equation:
+	\begin{gather}
+		A\cdot 10^{n-1} - 8(A\cdot 10^{n-2}) = 10^{n-1} \nonumber\\
+		2A\cdot 10^{n-2} - 10^{n-1} \nonumber\\
+		A = 5 \nonumber
+	\end{gather}
+	So $a_n^{(p)} = 5\cdot 10^{n-1}$\\
+	Since $a_n=a_n^{(h)} + a_n^{(p)}=c\cdot 8^n + 5\cdot 10^{n-1}$ and $a_0=1$, c must equal $\frac{1}{2}$ so we finally get the result:
+	\begin{align}
+		a_n &= \frac{1}{2}8^n + 5\cdot 10^{n-1} \nonumber\\
+		&= \frac{8^n + 10^n}{2} \nonumber
+	\end{align}
+	\end{enumerate}
+\item
+	\begin{enumerate}
+	\item For the nth chip in the stack, the chip can be 1 of 2 cases. The nth chip can be either red, white, or green so there are $a_{n-1}$ ways to stack the remaining chips so there are $3a_{n-1}$ ways in this case. The nth chip can be blue which means the previous chip cannot be blue so it must be one of the 3 remaining colors. The rest of the stack is counted by $a_{n-2}$ so there are $3a_{n-2}$ ways in this case.\\
+	$a_0$ is clearly 1\\
+	$a_1$ is clearly 4\\
+	So the recurrence relation is $a_n = 3a_{n-1} + 3a_{n-2}, n\geq 2, a_0=1, a_1=4$
+	\item Try $a_n=cr^n$ where $c\neq 0, r\neq 0$\\
+	\begin{gather}
+		r^n=3r^{n-1}+3r^{n-2} \nonumber\\
+		r^2=3r-3=0 \nonumber
+	\end{gather}
+	2 roots of r: 
+	\begin{gather}
+		r=\frac{3+\sqrt{21}}{2} \nonumber\\
+		r=\frac{3-\sqrt{21}}{2} \nonumber
+	\end{gather}
+	So we look for a solution of form:
+	\begin{gather}
+		a_n=c_1(\frac{3+\sqrt{21}}{2})^n + c_2(\frac{3-\sqrt{21}}{2})^n\nonumber
+	\end{gather}
+	Since $a_0=1$ and $a_1=4$:
+	\begin{gather}
+	1=c_1+ c_2 \nonumber\\
+	4=c_1(\frac{3+\sqrt{21}}{2}) + c_2(\frac{3-\sqrt{21}}{2}) \nonumber
+	\end{gather}
+	We can solve for $c_1$ and $c_2$ to get:
+	\begin{gather}
+		c_1 = \frac{\sqrt{21}+5}{2\sqrt{21}}\nonumber\\
+		c_2 = \frac{\sqrt{21}_5}{2\sqrt{21}} \nonumber
+	\end{gather}
+	So the closed form expression for $a_n, n\geq 0$ is:
+	\begin{gather}
+		a_n = (\frac{\sqrt{21}+5}{2\sqrt{21}})(\frac{3+\sqrt{21}}{2})^n+ (\frac{\sqrt{21}-5}{2\sqrt{21}})(\frac{3-\sqrt{21}}{2})^n \nonumber
+	\end{gather}
+	\item To count $a_10$ directly, we sum the valid stacks that only use 0,1,2,...,10 blue chips. Since we know from the pigeonhole principle that there are no valid stacks with more than 5 chips, we only consider numbers of chips for 0 to 5.\\
+	For n blue chips we chose n chips to be blue, and color the remaining $10-n$ chips one of the 3 remaining colors, this gives us the total number of stacks with n blue chips.\\
+	To get the number to valid n-stacks, we subtract the number of invalid stacks which is the number of combination of blue chips such that 2 or more blue chips are consecutive, multiplied by the number of ways to color the remaining $10-n$ chips one of the 3 remaining colors.\\
+	$a_{10}$ can then be expressed as:
+	\begin{gather}
+		a_{10} = \sum_{i=0}^5 3^{n-i}(\binom{10}{i}-q_i) \nonumber
+	\end{gather}
+	Where $q_i$ is the number of invalid i-stacks.\\
+	Therefor:
+	\begin{gather}
+		a_{10} = 3^{10}\binom{10}{0} + 3^{9}\binom{10}{1} + 3^{8}(\binom{10}{2} - 9) + 3^{7}(\binom{10}{3} - 65)\nonumber\\ + 3^{6}(\binom{10}{4} - 172) + 3^{5}(\binom{10}{5} - 246) \nonumber
+	\end{gather}
+	So $a_{10} = 641520$ which matches with our result from (b).
+	\end{enumerate}
+\item
+	\begin{enumerate}
+	\item We know that an n-cube consists of 2 copies of an ($n-1$)-cube joined together by edges connecting the equivalent vertices in each copy. Since we know an n-cube has $2^n$ vertices there will be $2^n$ edges connecting the two copies. Clearly a 0-cube has no edges so $a_0=0$  So a recurrence relation for the number of edges in an n-cube is:
+	\begin{gather}
+		a_n=2a_{n-1} + 2^{n-1}, n\geq 0, a_0=0 \nonumber
+	\end{gather}
+	\item The recurrence relation can be re-written as $a_n-2a_{n-1}=2^{n-1}$\\
+	We then need to find the homogeneous and particular recurrence relations so that $a_n=a_n^{(h)} + a_n^{(p)}$\\
+	For the homogeneous recurrence relation, $a_n-2a_{n-1}=0$ which has a characteristic equation of $r-2=0$, so the characteristic root is $r=2$\\
+	Therefore the homogeneous recurrence relation $a_n^{(h)}=c\cdot 2^n$ for some c.\\
+	For the particular solution, $a_n^{(p)} = An\cdot 2^{n-1}$ for some A.\\
+	So using the original equation:
+	\begin{gather}
+		An\cdot 2^{n-1} - 2(A(n-1))\cdot 2^{n-2} = 2^{n-1} \nonumber\\
+		A\cdot 2^{n-1} - 2^{n-1} \nonumber\\
+		A = 1 \nonumber
+	\end{gather}
+	So $a_n^{(p)} = n2^{n-1}$\\
+	Since $a_n=a_n^{(h)} + a_n^{(p)}=c\cdot 2^n + n2^{n-1}$ and $a_0=0$, c must equal zero so we finally get the result:
+	\begin{gather}
+		a_n = n2^{n-1} \nonumber
+	\end{gather}
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}
